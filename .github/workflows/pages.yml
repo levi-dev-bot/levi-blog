@@ -27,7 +27,9 @@ jobs:
           sed -i 's|^title:.*|title: Levi'"'"'s Blog|' _config.yml
           sed -i 's|^author:.*|author: Levi|' _config.yml
           sed -i 's|^language:.*|language: zh-CN|' _config.yml
-          sed -i 's|url:.*|url: https://live-tech.top\nroot: /|' _config.yml
+          sed -i 's|url:.*|url: https://live-tech.top|' _config.yml
+          # Add root only if not already present
+          grep -q '^root:' _config.yml || sed -i '/^url:/a root: /' _config.yml
       - name: Build
         run: npm run build
       - name: Upload artifact
