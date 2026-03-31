@@ -15,18 +15,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
       - name: Install Dependencies
         run: |
           npm install
           npm install hexo-theme-butterfly
-      - name: Update site config
+      - name: Link Theme
         run: |
-          sed -i 's|https://levi-dev-bot.github.io/levi-blog/|https://live-tech.top/|g' _config.yml
-          sed -i 's|url: https://levi-dev-bot.github.io/levi-blog|url: https://live-tech.top|g' _config.yml
+          ln -sf node_modules/hexo-theme-butterfly themes/butterfly
+      - name: Update Config
+        run: |
+          sed -i 's|^title:.*|title: Levi'"'"'s Blog|' _config.yml
+          sed -i 's|^author:.*|author: Levi|' _config.yml
+          sed -i 's|^language:.*|language: zh-CN|' _config.yml
+          sed -i 's|url:.*|url: https://live-tech.top\nroot: /|' _config.yml
       - name: Build
         run: npm run build
-      - name: Upload Pages artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
@@ -38,9 +42,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy
         uses: actions/deploy-pages@v4
