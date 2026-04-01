@@ -1,0 +1,48 @@
+# Butterfly 主题配置覆盖
+# 此文件会覆盖主题默认配置
+
+# 网站图标
+favicon: /img/favicon.png
+
+# 头像
+avatar:
+  url: /img/avatar.png
+  effect: false
+
+# 博主信息
+author:
+  name: Levi
+  description: 网络技术 / 安全 / 效率工具
+
+# 社交链接
+social:
+  github: https://github.com/levi-dev-bot
+  # 可以添加更多
+
+# 公告
+announcement:
+  content: 欢迎来到 Levi's Blog，记录网络技术的实战经验与思考。
+
+# 页脚
+footer:
+  owner: Levi
+  since: 2026
+
+# 主题颜色
+colorpicker: false
+
+# 懒加载
+lazyload: true
+
+# 复制功能
+copy:
+  enable: true
+
+# 蜘蛛
+robots:
+  - 'User-agent: *'
+  - 'Disallow: /'
+
+# SEO
+seo:
+  canonical: true
