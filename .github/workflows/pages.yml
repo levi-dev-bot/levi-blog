@@ -16,20 +16,11 @@ jobs:
         with:
           node-version: '20'
       - name: Install Dependencies
-        run: |
-          npm install
-          npm install hexo-theme-butterfly
+        run: npm install
+      - name: Install Theme
+        run: npm install hexo-theme-butterfly
       - name: Link Theme
-        run: |
-          ln -sf node_modules/hexo-theme-butterfly themes/butterfly
-      - name: Update Config
-        run: |
-          sed -i 's|^title:.*|title: Levi'"'"'s Blog|' _config.yml
-          sed -i 's|^author:.*|author: Levi|' _config.yml
-          sed -i 's|^language:.*|language: zh-CN|' _config.yml
-          sed -i 's|url:.*|url: https://live-tech.top|' _config.yml
-          # Add root only if not already present
-          grep -q '^root:' _config.yml || sed -i '/^url:/a root: /' _config.yml
+        run: ln -sf node_modules/hexo-theme-butterfly themes/butterfly
       - name: Build
         run: npm run build
       - name: Upload artifact
